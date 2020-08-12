@@ -8,7 +8,7 @@ $flag_country = false;
 $flag_isrisky = true;
 $curl = curl_init();
 $ip = $_SERVER['REMOTE_ADDR'];
-$access_key = '8f5dc0a0cb0ca93be1db21ae527b1962';
+$access_key = 'KEY'; # can found here - http://api.ipstack.com/
 $logfile = "./logs/index.log";
 $massege = "";
 
@@ -48,7 +48,7 @@ if(!($api_result['vpn_or_proxy'] == 'yes' || $api_result['risk'] != 'low')){
 }
 # ------------------------------------------------------------------------------
 # GET IS CRAWLER ---------------------------------------------------------------
-$api_request = "http://api.userstack.com/detect?access_key=39880b7bb82f771579268590c4931118&ua=".urlencode($_SERVER['HTTP_USER_AGENT']);
+$api_request = "http://api.userstack.com/detect?access_key=YOUR-KEY&ua=".urlencode($_SERVER['HTTP_USER_AGENT']);
 $ua = json_decode(file_get_contents($api_request));
 $is_crawler = $ua -> crawler -> is_crawler;
 $data = var_export ( $ua, TRUE );
@@ -56,7 +56,7 @@ $data = var_export ( $ua, TRUE );
 
 # Test Whois API
 // Initialize CURL:
-$ch = curl_init('https://4quewkl50h.execute-api.eu-west-1.amazonaws.com/API/api-whois?ip=208.126.114.29');
+$ch = curl_init('https://4quewkl50h.execute-api.eu-west-1.amazonaws.com/API/api-whois?ip={$ip}');
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
 // Store the data:
